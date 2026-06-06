@@ -8,7 +8,10 @@ import CalendarWidget from './components/CalendarWidget';
 import IntegrationWidget from './components/IntegrationWidget';
 import FocusWidget from './components/FocusWidget';
 import MobileNav from './components/MobileNav';
+import IntroScreen from './components/IntroScreen';
 import { TASKS, PROJECTS, INTEGRATIONS, FOCUS_TASKS } from './data/sampleData';
+import { motion } from 'motion/react';
+import { ArrowRight } from 'lucide-react';
 
 const BASE_STATS = [
   { label: 'Total Tasks', change: '12%', up: true,  accent: '#7C6FF7' },
@@ -18,11 +21,11 @@ const BASE_STATS = [
 ];
 
 export default function App() {
+  const [introDone, setIntroDone]       = useState(false);
   const [activeNav, setActiveNav]       = useState('dashboard');
   const [tasks, setTasks]               = useState(TASKS);
   const [integrations, setIntegrations] = useState(INTEGRATIONS);
   const [searchQuery, setSearchQuery]   = useState('');
-  const [showAddForm, setShowAddForm]   = useState(false);
 
   /* ── Task handlers ─────────────────────────────────── */
   function handleToggle(id) {
@@ -54,7 +57,6 @@ export default function App() {
     { ...BASE_STATS[3], value: tasks.filter(t => t.status === 'todo').length },
   ];
 
-  /* ── Mobile section rendering ──────────────────────── */
   function MobileRightSidebar() {
     return (
       <div className="flex flex-col gap-4 mt-4">
@@ -66,86 +68,103 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ backgroundColor: '#EDEBE4' }}>
+    <>
+      {/* ── Intro screen ─────────────────────────────── */}
+      <IntroScreen onComplete={() => setIntroDone(true)} />
 
-      {/* ══ Desktop sidebar (hidden on mobile) ══ */}
-      <div className="hidden md:block">
-        <Sidebar activeNav={activeNav} onNavChange={setActiveNav} />
-      </div>
+      {/* ── Main app (fades in after intro) ──────────── */}
+      <motion.div
+        className="flex h-screen overflow-hidden"
+        style={{ backgroundColor: '#EDEBE4' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: introDone ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        {/* ── Desktop sidebar ── */}
+        <div className="hidden md:block">
+          <Sidebar activeNav={activeNav} onNavChange={setActiveNav} />
+        </div>
 
-      {/* ══ Main content area ══ */}
-      <div className="flex flex-1 overflow-hidden">
+        {/* ── Main content ── */}
+        <div className="flex flex-1 overflow-hidden">
 
-        {/* Center column */}
-        <main className="flex-1 overflow-y-auto flex flex-col min-w-0">
-          <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+          {/* Center column */}
+          <main className="flex-1 overflow-y-auto flex flex-col min-w-0">
+            <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
-          <div className="flex flex-col gap-4 px-4 md:px-6 pt-2 pb-24 md:pb-8">
+            <div className="flex flex-col gap-5 px-4 md:px-6 pt-2 pb-24 md:pb-8">
 
-            {/* Stat cards — 2 cols on mobile, 4 on desktop */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-              {stats.map((s, i) => (
-                <StatCard key={s.label} stat={s} index={i} />
-              ))}
-            </div>
-
-            {/* Task list card */}
-            <div className="bg-white rounded-2xl border border-stone-100 shadow-sm p-4 md:p-5">
-              <TaskList
-                tasks={tasks}
-                searchQuery={searchQuery}
-                onToggle={handleToggle}
-                onDelete={handleDelete}
-                onAdd={handleAdd}
-              />
-            </div>
-
-            {/* Projects section */}
-            <section>
-              <div className="flex items-center justify-between mb-3">
-                <h2
-                  className="text-stone-900"
-                  style={{ fontFamily: "'Caveat', cursive", fontSize: '24px', fontWeight: 700 }}
-                >
-                  My Projects
-                </h2>
-                <button className="text-xs font-semibold text-violet-500 hover:text-violet-700 transition-colors">
-                  View all
-                </button>
-              </div>
-              {/* Horizontal scroll on mobile, grid on desktop */}
-              <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 md:grid md:grid-cols-4 md:overflow-visible md:pb-0">
-                {PROJECTS.map((p, i) => (
-                  <div key={p.id} className="shrink-0 w-40 md:w-auto">
-                    <ProjectCard project={p} index={i} />
-                  </div>
+              {/* Stat cards */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                {stats.map((s, i) => (
+                  <StatCard key={s.label} stat={s} index={i} />
                 ))}
               </div>
-            </section>
 
-            {/* Mobile: show right-sidebar widgets inline */}
-            <div className="block lg:hidden">
-              <MobileRightSidebar />
+              {/* Task list */}
+              <div className="bg-white rounded-3xl border border-stone-100 shadow-sm p-4 md:p-5">
+                <TaskList
+                  tasks={tasks}
+                  searchQuery={searchQuery}
+                  onToggle={handleToggle}
+                  onDelete={handleDelete}
+                  onAdd={handleAdd}
+                />
+              </div>
+
+              {/* Projects section */}
+              <section>
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h2
+                      className="text-stone-900 leading-tight"
+                      style={{ fontFamily: "'Caveat', cursive", fontSize: '26px', fontWeight: 700 }}
+                    >
+                      My Projects
+                    </h2>
+                    <p className="text-xs text-stone-400 mt-0.5">{PROJECTS.length} active projects</p>
+                  </div>
+                  <motion.button
+                    whileHover={{ x: 2 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="flex items-center gap-1 text-xs font-semibold text-violet-500 hover:text-violet-700 transition-colors"
+                  >
+                    View all <ArrowRight size={12} />
+                  </motion.button>
+                </div>
+
+                {/* Grid — 2 cols on mobile, 4 on desktop */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                  {PROJECTS.map((p, i) => (
+                    <ProjectCard key={p.id} project={p} index={i} />
+                  ))}
+                </div>
+              </section>
+
+              {/* Mobile: right sidebar widgets inline */}
+              <div className="block lg:hidden">
+                <MobileRightSidebar />
+              </div>
             </div>
-          </div>
-        </main>
+          </main>
 
-        {/* ══ Right sidebar (desktop only, ≥ lg) ══ */}
-        <aside className="hidden lg:flex w-[245px] shrink-0 flex-col gap-4 overflow-y-auto border-l border-stone-200 bg-[#F8F6F0] p-4">
-          <CalendarWidget />
-          <IntegrationWidget integrations={integrations} onToggle={handleToggleIntegration} />
-          <FocusWidget focusTasks={FOCUS_TASKS} />
-        </aside>
-      </div>
+          {/* ── Right sidebar (desktop) ── */}
+          <aside className="hidden lg:flex w-[248px] shrink-0 flex-col gap-4 overflow-y-auto border-l border-stone-200 bg-[#F8F6F0] p-4">
+            <CalendarWidget />
+            <IntegrationWidget integrations={integrations} onToggle={handleToggleIntegration} />
+            <FocusWidget focusTasks={FOCUS_TASKS} />
+          </aside>
+        </div>
 
-      {/* ══ Mobile bottom nav ══ */}
-      <div className="md:hidden">
-        <MobileNav
-          activeNav={activeNav}
-          onNavChange={setActiveNav}
-          onAddTask={() => setShowAddForm(true)}
-        />
-      </div>
-    </div>
+        {/* ── Mobile bottom nav ── */}
+        <div className="md:hidden">
+          <MobileNav
+            activeNav={activeNav}
+            onNavChange={setActiveNav}
+            onAddTask={() => {}}
+          />
+        </div>
+      </motion.div>
+    </>
   );
 }
