@@ -75,7 +75,7 @@ export default function App() {
       {/* ── Main app (fades in after intro) ──────────── */}
       <motion.div
         className="flex h-screen overflow-hidden"
-        style={{ backgroundColor: '#EDEBE4' }}
+        style={{ backgroundColor: 'var(--color-bg)' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: introDone ? 1 : 0 }}
         transition={{ duration: 0.5 }}
@@ -108,10 +108,10 @@ export default function App() {
 
               {/* Task list */}
               <motion.div
-                className="bg-white rounded-3xl border border-stone-100 shadow-sm p-4 md:p-5"
-                initial={{ opacity: 0, y: 20 }}
+                className="bg-white rounded-2xl border border-stone-100 p-4 md:p-5"
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+                transition={{ duration: 0.4, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 <TaskList
                   tasks={tasks}
@@ -138,13 +138,9 @@ export default function App() {
                     </h2>
                     <p className="text-xs text-stone-400 mt-0.5">{PROJECTS.length} active projects</p>
                   </div>
-                  <motion.button
-                    whileHover={{ x: 2 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="flex items-center gap-1 text-xs font-semibold text-violet-500 hover:text-violet-700 transition-colors"
-                  >
-                    View all <ArrowRight size={12} />
-                  </motion.button>
+                  <button className="flex items-center gap-1 text-[12px] font-medium text-stone-400 hover:text-stone-700 transition-colors duration-150">
+                    View all <ArrowRight size={11} />
+                  </button>
                 </div>
 
                 {/* Grid — 2 cols on mobile, 4 on desktop */}
@@ -163,7 +159,7 @@ export default function App() {
           </main>
 
           {/* ── Right sidebar (desktop) ── */}
-          <aside className="hidden lg:flex w-[248px] shrink-0 flex-col gap-4 overflow-y-auto border-l border-stone-200 bg-[#F8F6F0] p-4">
+          <aside className="hidden lg:flex w-[240px] shrink-0 flex-col gap-3 overflow-y-auto border-l border-stone-200 bg-white p-4">
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.4 }}>
               <CalendarWidget />
             </motion.div>

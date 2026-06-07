@@ -6,7 +6,7 @@ export const TASKS = [
   {
     id: 1,
     title: "Design TAMA onboarding flow",
-    project: "TAMA Project",
+    project: "Project",
     projectColor: "#7C6FF7",
     dueDate: "Jun 10",
     priority: "High",
@@ -32,7 +32,7 @@ export const TASKS = [
   {
     id: 3,
     title: "Write feature documentation",
-    project: "TAMA Project",
+    project: "Project",
     projectColor: "#7C6FF7",
     dueDate: "Jun 14",
     priority: "Medium",
@@ -45,7 +45,7 @@ export const TASKS = [
   {
     id: 4,
     title: "Finalise project report",
-    project: "TAMA Project",
+    project: "Project",
     projectColor: "#7C6FF7",
     dueDate: "Jun 8",
     priority: "Low",
@@ -58,7 +58,7 @@ export const TASKS = [
   {
     id: 5,
     title: "Upload assets to Google Drive",
-    project: "TAMA Project",
+    project: "Project",
     projectColor: "#7C6FF7",
     dueDate: "Jun 15",
     priority: "Low",
@@ -112,7 +112,7 @@ export const TASKS = [
 export const PROJECTS = [
   {
     id: 1,
-    name: "TAMA Project",
+    name: "Project",
     taskCount: 12,
     completed: 7,
     color: "#7C6FF7",

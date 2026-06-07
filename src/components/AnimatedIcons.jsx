@@ -186,9 +186,8 @@ export function AnimatedRotateReset({ onClick, size = 14, className = '' }) {
     <motion.button
       onClick={handleClick}
       animate={controls}
-      whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className={`w-9 h-9 rounded-xl border border-stone-200 flex items-center justify-center text-stone-400 hover:text-stone-600 hover:border-stone-300 bg-white ${className}`}
+      className={`w-8 h-8 rounded-lg border border-stone-200 flex items-center justify-center text-stone-400 hover:text-stone-700 hover:border-stone-300 hover:bg-stone-50 transition-colors duration-150 ${className}`}
     >
       <RotateCcw size={size} />
     </motion.button>
@@ -201,34 +200,33 @@ export function AnimatedPlayPause({ running, onToggle, className = '' }) {
   return (
     <motion.button
       onClick={onToggle}
-      whileTap={{ scale: 0.95 }}
-      whileHover={{ backgroundColor: '#3730a3' }}
-      animate={{ backgroundColor: running ? '#5b21b6' : '#1c1917' }}
-      transition={{ duration: 0.3 }}
-      className={`w-full flex items-center justify-center gap-2 py-2.5 text-white text-xs font-semibold rounded-xl ${className}`}
+      whileTap={{ scale: 0.97 }}
+      animate={{ backgroundColor: running ? '#44403C' : '#1C1917' }}
+      transition={{ duration: 0.25 }}
+      className={`w-full flex items-center justify-center gap-1.5 py-2 text-white text-[12px] font-medium rounded-lg ${className}`}
     >
       <AnimatePresence mode="wait">
         {running ? (
           <motion.div
             key="pause"
-            initial={{ opacity: 0, scale: 0.6 }}
+            initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.6 }}
-            transition={{ duration: 0.15 }}
-            className="flex items-center gap-2"
+            exit={{ opacity: 0, scale: 0.7 }}
+            transition={{ duration: 0.12 }}
+            className="flex items-center gap-1.5"
           >
-            <Pause size={14} /> Pause
+            <Pause size={12} /> Pause
           </motion.div>
         ) : (
           <motion.div
             key="play"
-            initial={{ opacity: 0, scale: 0.6 }}
+            initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.6 }}
-            transition={{ duration: 0.15 }}
-            className="flex items-center gap-2"
+            exit={{ opacity: 0, scale: 0.7 }}
+            transition={{ duration: 0.12 }}
+            className="flex items-center gap-1.5"
           >
-            <Play size={14} fill="white" /> Start Focus
+            <Play size={12} fill="white" /> Start Focus
           </motion.div>
         )}
       </AnimatePresence>

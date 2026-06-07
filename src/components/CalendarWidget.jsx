@@ -36,11 +36,11 @@ export default function CalendarWidget() {
           Calendar
         </h3>
         <div className="flex gap-0.5">
-          <button onClick={prev} className="w-6 h-6 flex items-center justify-center text-stone-400 hover:text-stone-700 rounded-lg hover:bg-stone-50">
-            <ChevronLeft size={14} />
+          <button onClick={prev} className="w-6 h-6 flex items-center justify-center text-stone-400 hover:text-stone-700 rounded-md hover:bg-stone-100 transition-colors duration-150">
+            <ChevronLeft size={13} />
           </button>
-          <button onClick={next} className="w-6 h-6 flex items-center justify-center text-stone-400 hover:text-stone-700 rounded-lg hover:bg-stone-50">
-            <ChevronRight size={14} />
+          <button onClick={next} className="w-6 h-6 flex items-center justify-center text-stone-400 hover:text-stone-700 rounded-md hover:bg-stone-100 transition-colors duration-150">
+            <ChevronRight size={13} />
           </button>
         </div>
       </div>
@@ -64,9 +64,9 @@ export default function CalendarWidget() {
             {day ? (
               <div className="relative flex items-center justify-center">
                 <button
-                  className={`w-7 h-7 text-[11px] rounded-full flex items-center justify-center font-medium transition-colors ${
+                  className={`w-7 h-7 text-[11px] rounded-lg flex items-center justify-center font-medium transition-colors duration-150 ${
                     day === todayD
-                      ? 'bg-violet-600 text-white font-bold shadow-sm'
+                      ? 'bg-stone-800 text-white font-semibold'
                       : 'text-stone-600 hover:bg-stone-100'
                   }`}
                 >
