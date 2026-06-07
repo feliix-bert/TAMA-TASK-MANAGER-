@@ -202,7 +202,10 @@ export function AnimatedPlayPause({ running, onToggle, className = '' }) {
     <motion.button
       onClick={onToggle}
       whileTap={{ scale: 0.95 }}
-      className={`flex-1 flex items-center justify-center gap-2 py-2.5 bg-stone-900 text-white text-sm font-semibold rounded-xl hover:bg-stone-800 ${className}`}
+      whileHover={{ backgroundColor: '#3730a3' }}
+      animate={{ backgroundColor: running ? '#5b21b6' : '#1c1917' }}
+      transition={{ duration: 0.3 }}
+      className={`w-full flex items-center justify-center gap-2 py-2.5 text-white text-xs font-semibold rounded-xl ${className}`}
     >
       <AnimatePresence mode="wait">
         {running ? (
@@ -386,7 +389,7 @@ export function AnimatedStatValue({ value, accent }) {
     >
       <span
         className="text-4xl font-bold leading-none"
-        style={{ fontFamily: "'Caveat', cursive", color: accent }}
+        style={{ fontFamily: 'var(--font-display)', color: accent }}
       >
         {value}
       </span>

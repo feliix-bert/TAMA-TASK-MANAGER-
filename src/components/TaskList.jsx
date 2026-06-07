@@ -38,7 +38,7 @@ export default function TaskList({ tasks, searchQuery, onToggle, onDelete, onAdd
     <section>
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-stone-900" style={{ fontFamily: "'Caveat', cursive", fontSize: '24px', fontWeight: 700 }}>
+        <h2 className="text-stone-900" style={{ fontFamily: 'var(--font-display)', fontSize: '22px' }}>
           My Tasks
         </h2>
         <div className="flex items-center gap-2">

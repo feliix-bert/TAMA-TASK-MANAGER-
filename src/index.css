@@ -1,8 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --font-display: 'DM Serif Display', 'Playfair Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --color-accent: #7C6FF7;
+  --color-warm: #F5A623;
+  --color-bg: #EDEBE4;
+}
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -13,9 +21,15 @@ html, body, #root {
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
-  background-color: #EDEBE4;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg);
+}
+
+/* ── Display font utility ── */
+.font-display {
+  font-family: var(--font-display);
 }
 
 /* Notebook line texture on sidebar */
@@ -35,5 +49,36 @@ body {
 ::-webkit-scrollbar-thumb { background: #D6D2C8; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #B5B0A6; }
 
-/* Smooth transitions */
-* { transition-property: color, background-color, border-color, box-shadow; transition-duration: 120ms; }
+/* Smooth transitions — exclude transform/opacity so framer-motion controls them */
+* {
+  transition-property: color, background-color, border-color, box-shadow, filter;
+  transition-duration: 120ms;
+}
+
+/* Project card tilt effect */
+.project-card-inner {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Shimmer animation for skeleton loading */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.6) 50%, transparent 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Glow pulse for active states */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 111, 247, 0); }
+  50% { box-shadow: 0 0 20px 4px rgba(124, 111, 247, 0.2); }
+}
+
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}

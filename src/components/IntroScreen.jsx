@@ -153,7 +153,7 @@ export default function IntroScreen({ onComplete }) {
             >
               <h1
                 className="text-white tracking-tight leading-none"
-                style={{ fontFamily: "'Caveat', cursive", fontSize: '72px', fontWeight: 700 }}
+                style={{ fontFamily: 'var(--font-display)', fontSize: '68px', fontWeight: 400, letterSpacing: '-0.02em' }}
               >
                 {'TAMA'.split('').map((ch, i) => (
                   <motion.span
@@ -184,7 +184,7 @@ export default function IntroScreen({ onComplete }) {
                 <motion.p
                   key="tagline"
                   className="text-white/70 text-lg font-medium"
-                  style={{ fontFamily: "'Caveat', cursive", fontSize: '24px' }}
+                  style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontStyle: 'italic' }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}

@@ -102,7 +102,7 @@ export default function StatCard({ stat, index }) {
 
         {/* Value */}
         <div className="mb-1">
-          <p className="text-[38px] font-bold text-stone-800 leading-none" style={{ fontFamily: "'Caveat', cursive", color: stat.accent }}>
+          <p className="text-[38px] font-bold text-stone-800 leading-none" style={{ fontFamily: 'var(--font-display)', color: stat.accent }}>
             <AnimCount value={stat.value} />
           </p>
           <p className="text-[11px] font-medium text-stone-500 mt-0.5">{stat.label}</p>

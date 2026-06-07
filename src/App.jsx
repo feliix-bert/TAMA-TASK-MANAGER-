@@ -95,14 +95,24 @@ export default function App() {
             <div className="flex flex-col gap-5 px-4 md:px-6 pt-2 pb-24 md:pb-8">
 
               {/* Stat cards */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+              <motion.div
+                className="grid grid-cols-2 lg:grid-cols-4 gap-3"
+                initial="hidden"
+                animate="show"
+                variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
+              >
                 {stats.map((s, i) => (
                   <StatCard key={s.label} stat={s} index={i} />
                 ))}
-              </div>
+              </motion.div>
 
               {/* Task list */}
-              <div className="bg-white rounded-3xl border border-stone-100 shadow-sm p-4 md:p-5">
+              <motion.div
+                className="bg-white rounded-3xl border border-stone-100 shadow-sm p-4 md:p-5"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+              >
                 <TaskList
                   tasks={tasks}
                   searchQuery={searchQuery}
@@ -110,15 +120,19 @@ export default function App() {
                   onDelete={handleDelete}
                   onAdd={handleAdd}
                 />
-              </div>
+              </motion.div>
 
               {/* Projects section */}
-              <section>
+              <motion.section
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+              >
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <h2
                       className="text-stone-900 leading-tight"
-                      style={{ fontFamily: "'Caveat', cursive", fontSize: '26px', fontWeight: 700 }}
+                      style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: 400 }}
                     >
                       My Projects
                     </h2>
@@ -139,7 +153,7 @@ export default function App() {
                     <ProjectCard key={p.id} project={p} index={i} />
                   ))}
                 </div>
-              </section>
+              </motion.section>
 
               {/* Mobile: right sidebar widgets inline */}
               <div className="block lg:hidden">
@@ -150,9 +164,15 @@ export default function App() {
 
           {/* ── Right sidebar (desktop) ── */}
           <aside className="hidden lg:flex w-[248px] shrink-0 flex-col gap-4 overflow-y-auto border-l border-stone-200 bg-[#F8F6F0] p-4">
-            <CalendarWidget />
-            <IntegrationWidget integrations={integrations} onToggle={handleToggleIntegration} />
-            <FocusWidget focusTasks={FOCUS_TASKS} />
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.4 }}>
+              <CalendarWidget />
+            </motion.div>
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.5 }}>
+              <IntegrationWidget integrations={integrations} onToggle={handleToggleIntegration} />
+            </motion.div>
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.6 }}>
+              <FocusWidget focusTasks={FOCUS_TASKS} />
+            </motion.div>
           </aside>
         </div>
 

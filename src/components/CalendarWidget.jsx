@@ -32,7 +32,7 @@ export default function CalendarWidget() {
     <div className="bg-white rounded-2xl border border-stone-100 p-4 shadow-sm">
       {/* Header */}
       <div className="flex items-center justify-between mb-2">
-        <h3 className="text-stone-800" style={{ fontFamily: "'Caveat', cursive", fontSize: '19px', fontWeight: 700 }}>
+        <h3 className="text-stone-800" style={{ fontFamily: 'var(--font-display)', fontSize: '18px' }}>
           Calendar
         </h3>
         <div className="flex gap-0.5">

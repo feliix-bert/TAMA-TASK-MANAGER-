@@ -46,7 +46,7 @@ export default function IntegrationWidget({ integrations, onToggle }) {
   return (
     <div className="bg-white rounded-2xl border border-stone-100 p-4 shadow-sm">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-stone-800" style={{ fontFamily: "'Caveat', cursive", fontSize: '19px', fontWeight: 700 }}>
+        <h3 className="text-stone-800" style={{ fontFamily: 'var(--font-display)', fontSize: '18px' }}>
           Connect
         </h3>
         {/* Heart icon — subtle, non-animated (decorative) */}

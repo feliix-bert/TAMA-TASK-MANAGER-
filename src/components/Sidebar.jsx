@@ -40,8 +40,8 @@ export default function Sidebar({ activeNav, onNavChange }) {
       {/* ── Brand (pinned top) ─────────────────── */}
       <div className="px-5 pt-5 pb-3 shrink-0">
         <span
-          className="text-[28px] font-bold tracking-tight text-stone-900 leading-none block"
-          style={{ fontFamily: "'Caveat', cursive" }}
+          className="text-[26px] font-bold tracking-tight text-stone-900 leading-none block"
+          style={{ fontFamily: 'var(--font-display)' }}
         >
           TAMA
         </span>
@@ -84,10 +84,10 @@ export default function Sidebar({ activeNav, onNavChange }) {
         {/* Sticky note (inside scroll so it doesn't crowd bottom) */}
         <div className="mx-1 mt-3 rounded-xl bg-violet-100 border border-violet-200 p-3 relative shrink-0">
           <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-amber-300 border border-amber-400 shadow-sm" />
-          <p className="text-stone-600 leading-snug" style={{ fontFamily: "'Caveat', cursive", fontSize: '15px' }}>
+          <p className="text-stone-600 leading-snug" style={{ fontFamily: 'var(--font-display)', fontSize: '14px' }}>
             Focus on progress,<br />not perfection.
           </p>
-          <p className="mt-1" style={{ fontFamily: "'Caveat', cursive", fontSize: '18px' }}>☺</p>
+          <p className="mt-1 text-base">☺</p>
         </div>
       </nav>
 

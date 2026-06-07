@@ -17,7 +17,7 @@ export default function Header({ searchQuery, onSearchChange }) {
       <div>
         <h1
           className="text-stone-900 leading-tight"
-          style={{ fontFamily: "'Caveat', cursive", fontSize: '30px', fontWeight: 700 }}
+          style={{ fontFamily: 'var(--font-display)', fontSize: '28px', fontWeight: 400 }}
         >
           {getGreeting()}, Rafli! ☀️
         </h1>
