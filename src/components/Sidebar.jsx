@@ -114,9 +114,9 @@ export default function Sidebar({ activeNav, onNavChange }) {
               <ellipse cx="16" cy="27" rx="9" ry="7" fill="#A89880"/>
             </svg>
           </div>
-          <div className="min-w-0 flex-1 text-left">
-            <p className="text-[12px] font-semibold text-stone-700 truncate">Rafli Alfarezi</p>
-            <p className="text-[10px] text-stone-400 truncate">rafli@email.com</p>
+          <div className="min-w-0">
+            <p className="text-[12px] font-semibold text-stone-700 truncate">Felix</p>
+            <p className="text-[10px] text-stone-400 truncate">felix@email.com</p>
           </div>
           <Settings size={11} className="text-stone-300 group-hover:text-stone-500 shrink-0 transition-colors duration-150" />
         </button>

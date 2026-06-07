@@ -20,11 +20,8 @@ export default function Header({ searchQuery, onSearchChange }) {
     <header className="flex items-center justify-between px-6 pt-5 pb-4 shrink-0 border-b border-stone-100">
       {/* Greeting */}
       <div>
-        <h1
-          className="text-stone-900 leading-tight"
-          style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: 400 }}
-        >
-          {getGreeting()}, Rafli.
+        <h1 className="text-stone-900 leading-tight tracking-tight" style={{ fontFamily: 'var(--font-display)', fontSize: '28px' }}>
+          {getGreeting()}, Felix.
         </h1>
         <p className="text-[12px] text-stone-400 font-medium mt-0.5 tracking-wide">
           {getDate()}
